@@ -43,6 +43,11 @@ impl RPN {
             heap: BinaryHeap::new()
         }
     }    
+
+    #[allow(dead_code)]
+    fn get_posfix<'a, 'b>(&self, _input: &'a str) -> &'b str {
+        ""
+    }
 }
 
 pub fn get_rpn(ope_array:& Vec<String>) -> Vec<RPN> {
