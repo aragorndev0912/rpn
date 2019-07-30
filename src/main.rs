@@ -8,6 +8,9 @@ use std::path::Path;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+mod rpn;
+use rpn::*;
+
 const EXTENSION:&'static str = "ope";
 
 fn get_ope<'a>(path:&'a str) -> Result<Vec<String>, String> {
@@ -45,8 +48,9 @@ fn init() -> Result<bool, String> {
                 Err(e) => return Err(e)
             };   
 
-            for elem in list {
-                println!("{}", elem);
+            let rpn_array:Vec<RPN> = get_rpn(&list);
+            for rpn in rpn_array.iter() {
+                println!("{:?}", rpn);
             }
 
             Ok(true)
