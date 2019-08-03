@@ -34,20 +34,38 @@ pub struct RPN {
 
 impl RPN {
     pub fn new(operation:& String) -> RPN {
-        let input = operation.clone();
-        let output = String::new();
+        let input:String = operation.clone();
+        let heap:BinaryHeap<Node> = BinaryHeap::new();
+
+        let output = get_posfix(&input);
+
 
         RPN {
             input: input,
             output: output,
-            heap: BinaryHeap::new()
+            heap: heap
         }
     }    
+}
 
-    #[allow(dead_code)]
-    fn get_posfix<'a, 'b>(&self, _input: &'a str) -> &'b str {
-        ""
+#[allow(dead_code)]
+fn evaluate_char(_c:&char) {
+
+}
+
+#[allow(dead_code)]
+fn get_posfix<'a>(input: &'a str) -> String {
+    let mut output = String::new();
+
+    for c in input.chars() {
+        if c as usize >= 48 && c as usize <= 57 {
+            println!("c: {} n: {}", c, c as usize);
+        }
+
+        output.push(c);
     }
+
+    output
 }
 
 pub fn get_rpn(ope_array:& Vec<String>) -> Vec<RPN> {
