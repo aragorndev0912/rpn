@@ -1,4 +1,4 @@
-# _RPN_ para el lenguaje de programación __Amaia__.
+# Evalución aritmética para un compilador o intéprete (_RPN_).
 
 El intérprete del lenguaje de programación __Amaia__ (_proximamente se explicará_), internamente utilizará la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa). para la evalución de las expresiones aritméticas. Se desarrolló un módulo escrito en el lenguaje [Rust](https://www.rust-lang.org/) que permite evaluar expresiones definidas dentro de un fichero de texto con extensión `.ope`, escritas utilizando la [Notación Algebraica](https://es.wikipedia.org/wiki/Notaci%C3%B3n_algebraica), para luego ser convertidas a expresiones definidas bajo la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa) y al final evaluarlas y obtener el resultado de la operaciones.
 
