@@ -48,7 +48,7 @@ fn init() -> Result<bool, String> {
                 Err(e) => return Err(e)
             };   
 
-            let rpn_array:Vec<RPN> = get_rpn(&list);
+            let rpn_array:Vec<RPN> = get_rpn(&list)?;
             for rpn in rpn_array.iter() {
                 println!("{:?}", rpn);
             }
