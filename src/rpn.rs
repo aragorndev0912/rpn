@@ -103,15 +103,12 @@ fn rigth_paren_eval(heap:&mut Vec<char>, output:&mut String) -> Result<bool, Str
 
 fn count_operator(heap:& Vec<char>) -> usize {
     let mut count:usize = 0;
-    
     for c in heap.iter() {
         count += 1;        
         if *c == '(' {
             count = 0;
         }
     }
-
-    println!("heap: {:?}, count: {}", heap, count);
     (count)
 }
 
@@ -156,7 +153,6 @@ fn evaluate_char(heap:&mut Vec<char>, output:&mut String, c:& char) -> Result<bo
     }
     else if "+-*/".contains(*c) {
         if count_operator(&heap) == 0 {
-            println!("agregando...");
             heap.push(*c);
             return Ok(true);
         }
