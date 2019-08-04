@@ -9,7 +9,7 @@ pub struct Node {
 }
 
 impl PartialOrd for Node {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+    fn partial_cmp(&self, other:& Self) -> Option<Ordering> {
         Some(self.cmp(other))
     }
 }
@@ -41,7 +41,62 @@ impl RPN {
             input: input,
             output: output
         })
-    }    
+    }
+
+    #[allow(dead_code)]
+    pub fn calculate(&self) -> Result<i32, String> {
+        let mut heap:Vec<i32> = Vec::new();
+        let mut value:String = String::new();
+
+        for c in self.output.chars() {
+            if c as usize >= 48 && c as usize <= 57 {
+                value.push(c);
+            }
+            else if c == ' ' {
+                self.push_value(&mut heap, &mut value)?;
+            }
+            else if "+-*/".contains(c) {
+                self.push_value(&mut heap, &mut value)?;
+                let y = heap.pop();
+                let x = heap.pop();
+
+                if x == None || y == None {
+                    return Err(format!("err: x-> '{:?}' y->'{:?}'", x, y));
+                }
+                
+                match c {
+                    '+' => heap.push(x.unwrap() + y.unwrap()),
+                    '-' => heap.push(x.unwrap() - y.unwrap()),
+                    '*' => heap.push(x.unwrap() * y.unwrap()),
+                    '/' => heap.push(x.unwrap() / y.unwrap()),
+                    _ => return Err(format!("err: character invalid {}", c))
+                }
+            }
+        }
+
+        let result = heap.pop();
+        if result == None {
+            return Err(format!("err: heap empty"));
+        }
+        Ok(result.unwrap())
+    }
+
+    fn push_value(&self, heap:&mut Vec<i32>, string:&mut String) -> Result<bool, String> {
+        if string.is_empty() {
+            return Ok(true);
+        }
+
+        match string.parse::<i32>() {
+            Ok(n) => {
+                heap.push(n);
+                string.clear();
+            },
+            Err(_) => return Err(format!("err: no can not parse string |{}|", string))
+        }
+
+        Ok(true)
+    }
+
 }
 
 /// Permite comparar operadores validos.
@@ -134,7 +189,6 @@ fn evaluate_operator(heap:&mut Vec<char>, output:&mut String, c:& char, flag:boo
             None => return Err(format!("err: evaluate_operator None "))
         }
     }
-    
     Ok(true)
 }
 
@@ -152,6 +206,8 @@ fn evaluate_char(heap:&mut Vec<char>, output:&mut String, c:& char) -> Result<bo
         return rigth_paren_eval(heap, output);
     }
     else if "+-*/".contains(*c) {
+        output.push(' ');
+
         if count_operator(&heap) == 0 {
             heap.push(*c);
             return Ok(true);

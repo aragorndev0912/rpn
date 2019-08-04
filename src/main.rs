@@ -48,13 +48,21 @@ fn init() -> Result<bool, String> {
 
             let rpn_array: Vec<RPN> = get_rpn(&list)?;
 
-            assert_eq!(rpn_array[0].output, "62+5*84/-");
-            assert_eq!(rpn_array[1].output, "62+5*8*4-");
-            assert_eq!(rpn_array[2].output, "59+2*65*+");
-            assert_eq!(rpn_array[3].output, "854*+126/-");
+            assert_eq!(rpn_array[0].output, "6 2 5 *+8 4/-");
+            assert_eq!(rpn_array[1].output, "6 2+ 5 *8 4/-");
+            assert_eq!(rpn_array[2].output, "6 2+ 5* 8 *4-");
+            assert_eq!(rpn_array[3].output, "5 9+ 2* 6 5*+");
+            assert_eq!(rpn_array[4].output, "8 5 4 *+12 68/-");
             
+            assert_eq!(rpn_array[0].calculate(), Ok(14));
+            assert_eq!(rpn_array[1].calculate(), Ok(38));
+            assert_eq!(rpn_array[2].calculate(), Ok(316));
+            assert_eq!(rpn_array[3].calculate(), Ok(58));
+            assert_eq!(rpn_array[4].calculate(), Ok(28));
+            
+
             for rpn in rpn_array.iter() {
-                println!("{:?}", rpn);
+                println!("{:?}, {:?}", rpn, rpn.calculate());
             }
 
             Ok(true)
