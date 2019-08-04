@@ -1,6 +1,6 @@
-# Evalución aritmética para un compilador o intéprete (_RPN_).
+# Evaluación aritmética para un compilador o intérprete (_RPN_).
 
-El intérprete del lenguaje de programación __Amaia__ (_proximamente se explicará_), internamente utilizará la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa). para la evalución de las expresiones aritméticas. Se desarrolló un módulo escrito en el lenguaje [Rust](https://www.rust-lang.org/) que permite evaluar expresiones definidas dentro de un fichero de texto con extensión `.ope`, escritas utilizando la [Notación Algebraica](https://es.wikipedia.org/wiki/Notaci%C3%B3n_algebraica), para luego ser convertidas a expresiones definidas bajo la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa) y al final evaluarlas y obtener el resultado de la operaciones.
+El intérprete del lenguaje de programación __Amaia__ (_próximamente  se explicará_), internamente utilizará la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa). para la evaluación de las expresiones aritméticas. Se desarrolló un módulo escrito en el lenguaje [Rust](https://www.rust-lang.org/) que permite evaluar expresiones definidas dentro de un fichero de texto con extensión `.ope`, escritas utilizando la [Notación Algebraica](https://es.wikipedia.org/wiki/Notaci%C3%B3n_algebraica), para luego ser convertidas a expresiones definidas bajo la [Notación Polaca Inversa](https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa) y al final evaluarlas y obtener el resultado de la operaciones.
 
 ## Conceptos.
 
@@ -16,7 +16,7 @@ La Notación Polaca Inversa nace de la necesidad de simplificar el diseño de la
 ## Ventajas & Desventajas el uso de RPN.
 
 ### Ventajas:
-+ La evalución de las operaciones se van ejecutando a medida que se introducen los datos.
++ La evaluación de las operaciones se van ejecutando a medida que se introducen los datos.
 
 
 + No necesita el uso de reglas de precedencia ni paréntesis.
@@ -29,7 +29,7 @@ La Notación Polaca Inversa nace de la necesidad de simplificar el diseño de la
 
 ## Ejemplo
 
-A continuación, se muestra un conjunto de operaciones aritméticas escritas tanto en infijo y su equivalente en postfijo. Estas operaciones solo contemplan los siguientes operadores aritméticos: `+ - * /` y un único operador de agrupación `()`
+A continuación, se muestra un conjunto de operaciones aritméticas escritas tanto en infijo y su equivalente en postfijo. Estas operaciones solo contemplan los siguientes operadores aritméticos: `+ - * /` y un único operador de agrupación `()`.
 
 ### Expresiones aritmeticas Infijo.
 
